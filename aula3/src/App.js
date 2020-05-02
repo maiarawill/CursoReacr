@@ -25,6 +25,11 @@ function Conversor() {
     setMoedaPara(event.target.value);
   };
 
+  function converter(event){ 
+    event.preventDefault()
+
+  }
+
   return (
     <div>
     <h1>Conversor de Moedas</h1>
@@ -32,7 +37,7 @@ function Conversor() {
       Erro obtendo dados de conversão, tente novamente
     </Alert>
     <Jumbotron>
-       <Form>
+       <Form onSubmit={converter} noValidate>
          <Form.Row>
            <Col sm='3'>
             <Form.Control 
