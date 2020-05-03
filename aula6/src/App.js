@@ -37,7 +37,7 @@ function Dashboard() {
   }, [dados]);
   return (
     <div>
-    <h1>Dashboard</h1>
+    <h1>Dashboarda</h1>
     <Chart
       width={'400px'}
       height={'300px'}
