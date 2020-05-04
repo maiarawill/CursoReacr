@@ -19,7 +19,7 @@ function ListarProdutos(props) {
 
     function handleComprar(event, produto) {
         event.preventDefault();
-        props.adicionarProdutos(produto);
+        props.adicionarProduto(produto);
         props.exibirMensagem(produto);
 
     };

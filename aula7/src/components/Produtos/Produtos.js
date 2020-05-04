@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import ListarProdutos from './ListarProdutos';
 import PropTypes from 'prop-types';
-import Alert from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 
 function Produtos(props) {
 
     const [exibirMsg, setExibirMsg] = useState(false);
-    const [produto, setProduto] = setState('');
+    const [produto, setProduto] = useState('');
 
     function visivel() {
         return props.visivel ? null : 'hidden';
@@ -14,7 +14,7 @@ function Produtos(props) {
 
     function exibirMensagem(produto){
         setExibirMsg(true);
-        setProduto(produto);
+        setProduto(produto.nome);
         setTimeout(() => {
             setExibirMsg(false)
         }, 3000);
@@ -30,7 +30,7 @@ function Produtos(props) {
             </Alert>
             <ListarProdutos 
             exibirMensagem={exibirMensagem}
-            adicionarProduto={adicionarProduto}/>
+            adicionarProduto={props.adicionarProduto}/>
         </div>
     );
 }

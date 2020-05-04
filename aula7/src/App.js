@@ -11,10 +11,45 @@ function Ecommerce() {
   const [exibirCheckout, setExibirCheckout] = useState(false);
   const [total, setTotal] = useState('0,00');
 
+  function adicionarProduto(produto){
+    const objCarrinho = Object.assign({}, carrinho);
+    let novoProduto = true;
+    objCarrinho.produtos.forEach((prod, indice) => {
+      if(prod.nome === produto.nome){
+        objCarrinho.produtos [indice].quantidade ++;
+        novoProduto = false;
+      }
+    });
+
+    if(novoProduto){
+      objCarrinho.produtos.push({
+        nome:produto.nome, preco: produto.preco, quantidade: 1
+      });
+    }
+    
+    SetCarrinho(objCarrinho);
+  }
+
+  function handleExibirProdutos(){
+    setExibirCheckout(false);
+    setExibirProdutos(true);
+  }
+
+  function handleExibirCheckout(total) {
+    setExibirCheckout(true);
+    setExibirProdutos(false);
+    setTotal(total)
+  }
+
   return (
     <div>
-      <Menu />
-      <Produtos />
+      <Menu
+        produtos={carrinho.produtos}
+        handleExibirProdutos={handleExibirProdutos}
+        handleExibirCheckout={handleExibirCheckout}/>
+      <Produtos 
+        visivel={exibirProdutos}
+        adicionarProduto={adicionarProduto}/>
       <Checkout />
     </div>
   );
