@@ -6,7 +6,7 @@ import Ecommerce from './App';
 describe('Teste do componente Ecommerce', () => {
   it('Deve renderizar o componente sem erros', () => {
     const { getByText } = render(<Ecommerce />);
-    const linkElement = getByText(/Checkout/i);
+    const linkElement = getByText('Mini Ecommerce');
     expect(linkElement).toBeInTheDocument();
   });
 });

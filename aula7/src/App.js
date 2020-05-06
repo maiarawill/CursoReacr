@@ -4,6 +4,7 @@ import Menu from './components/Menu/Menu';
 import Produtos from './components/Produtos/Produtos';
 import Checkout from './components/Checkout/Checkout';
 
+
 function Ecommerce() {
 
   const [carrinho, SetCarrinho] = useState({produtos: []});

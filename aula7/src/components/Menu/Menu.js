@@ -47,7 +47,7 @@ function Menu(props){
                         </NavDropdown.Item>
                         <span className={props.produtos.length === 0 ? 'hidden' : null}>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="" style={{color: 'green'}} onClick={() => props.handleExibirCheckout}>
+                            <NavDropdown.Item href="" style={{color: 'green'}} onClick={() => props.handleExibirCheckout(calcularTotal())}>
                                 <FontAwesomeIcon icon={faCashRegister} />
                                 &nbsp;
                                 Finalizar Compra
