@@ -17,12 +17,16 @@ function ListarTarefas() {
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [ordenarAsc, setOrdenarAsc] = useState(false);
   const [ordenarDesc, setOrdenarDesc] = useState(false);
+  const [filtroTarefa, setFiltroTarefa] = useState('');
 
 
     useEffect(() => {
     function obterTarefas() {
       const tarefasDb = localStorage['tarefas'];
       let listarTarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
+      listarTarefas = listarTarefas.filter(
+        t => t.nome.toLowerCase().indexOf(filtroTarefa.toLowerCase()) === 0
+      );
       if(ordenarAsc){
         listarTarefas.sort((t1, t2) =>(t1.nome.toLowerCase() > t2.nome.toLowerCase() ? 1 : -1));
       }else if(ordenarDesc){
@@ -34,7 +38,7 @@ function ListarTarefas() {
     if(carregarTarefas) {
       obterTarefas();
       setCarregarTarefas(false);}
-    }, [carregarTarefas, paginaAtual, ordenarDesc, ordenarAsc]);
+    }, [carregarTarefas, paginaAtual, ordenarDesc, ordenarAsc, filtroTarefa]);
 
     function handleMudarPagina(pagina){
       setPaginaAtual(pagina);
@@ -53,6 +57,11 @@ function ListarTarefas() {
         setOrdenarAsc(false);
         setOrdenarDesc(false);
       }
+      setCarregarTarefas(true);
+    }
+
+    function handleFiltrar(event){
+      setFiltroTarefa(event.target.value);
       setCarregarTarefas(true);
     }
 
@@ -79,6 +88,12 @@ function ListarTarefas() {
                 Nova tarefa
               </A>
             </th>
+        </tr>
+        <tr>
+          <th>
+          <Form.Control type="text" value={filtroTarefa} onChange={handleFiltrar} data-testid="txt-tarefa" className="filtro-tarefa"/>
+          </th>
+          <th>&nbsp;</th>
         </tr>
         </thead>
         <tbody>
