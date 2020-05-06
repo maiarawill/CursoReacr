@@ -3,8 +3,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const { listarTarefaId,
-        listarTarefa,
-        cadastrarTarefa } =require('./Controllers/gerenciador-tarefas');
+    listarTarefas,
+    cadastrarTarefa,
+    atualizarTarefa,
+    removerTarefa,
+    concluirTarefa } =require('./Controllers/gerenciador-tarefas');
 
 const app = express();
 const port = 3001;
@@ -16,13 +19,12 @@ function naoImplementado (req, res) {
     res.status(501).json({erro:'Não implementado'})
 };
 
-app.get('/gerenciador-tarefas', listarTarefa);
+app.get('/gerenciador-tarefas', listarTarefas);
 app.get('/gerenciador-tarefas/:id', listarTarefaId);
 app.post('/gerenciador-tarefas', cadastrarTarefa);
-app.put('/gerenciador-tarefas/:id', naoImplementado);
-app.delete('/gerenciador-tarefas/:id', naoImplementado);
-app.put('/gerenciador-tarefas/:id/concluir', naoImplementado);
-
+app.put('/gerenciador-tarefas/:id', atualizarTarefa);
+app.delete('/gerenciador-tarefas/:id', removerTarefa);
+app.put('/gerenciador-tarefas/:id/concluir', concluirTarefa);
 
 
 
