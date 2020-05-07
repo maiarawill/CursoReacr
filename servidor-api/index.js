@@ -9,6 +9,11 @@ const { listarTarefaId,
     removerTarefa,
     concluirTarefa } =require('./Controllers/gerenciador-tarefas');
 
+const {
+    finalizarCompra,
+    obterCidadesPorEstado} =require('./Controllers/mini-ecommerce');
+
+
 const app = express();
 const port = 3001;
 
@@ -24,8 +29,11 @@ app.get('/gerenciador-tarefas/:id', listarTarefaId);
 app.post('/gerenciador-tarefas', cadastrarTarefa);
 app.put('/gerenciador-tarefas/:id', atualizarTarefa);
 app.delete('/gerenciador-tarefas/:id', removerTarefa);
-app.put('/gerenciador-tarefas/:id/concluir', concluirTarefa);
+app.put('/gerenciador-tarefas/:id/concluir', obterCidadesPorEstado);
 
+
+app.post('/mini-ecommerce/checkout/finalizar-compra', finalizarCompra);
+app.get('/mini-ecommerce/estado/:siglaEstado/cidades', obterCidadesPorEstado);
 
 
 

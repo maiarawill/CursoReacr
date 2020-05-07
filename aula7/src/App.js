@@ -42,6 +42,10 @@ function Ecommerce() {
     setTotal(total)
   }
 
+  function handleLimparCarrinho() {
+    SetCarrinho({produtos: []});
+  }
+
   return (
     <div>
       <Menu
@@ -51,7 +55,12 @@ function Ecommerce() {
       <Produtos 
         visivel={exibirProdutos}
         adicionarProduto={adicionarProduto}/>
-      <Checkout />
+      <Checkout 
+      visivel={exibirCheckout}
+      handleExibirProdutos={handleExibirProdutos}
+      total={total}
+      produtos={carrinho}
+      handleLimparCarrinho={handleLimparCarrinho}/>
     </div>
   );
 }

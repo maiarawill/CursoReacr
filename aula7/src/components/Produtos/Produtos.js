@@ -30,7 +30,7 @@ function Produtos(props) {
             </Alert>
             <ListarProdutos 
             exibirMensagem={exibirMensagem}
-            adicionarProduto={props.adicionarProduto}/>
+            adicionarProdutos={props.adicionarProduto}/>
         </div>
     );
 }
